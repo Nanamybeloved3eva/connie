@@ -122,7 +122,8 @@ function mostrarPopupError() {
 
 document.getElementById("btn-error").addEventListener("click", mostrarPopupError);
 
-window.onload = () => {
-  document.body.classList.add("mostrar");
-};
+window.addEventListener("load", () => {
+    document.body.classList.add("mostrar");
+});
+
 
