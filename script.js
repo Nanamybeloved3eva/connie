@@ -27,11 +27,17 @@ popupMusic.loop = false;
 
 /* Inicia música después del splash */
 window.addEventListener("load", () => {
+    // Inicia música
     setTimeout(() => {
         music.play().catch(() => {
             console.log("Autoplay bloqueado, se reproducirá al tocar la pantalla.");
         });
     }, 2000);
+
+    // Activa animación del body
+    document.body.classList.add("mostrar");
+});
+
 });
 
 /* Reproducir si el usuario toca (para desbloquear autoplay en móviles) */
@@ -66,7 +72,7 @@ function actualizarContador() {
 
     if (diff <= 0) {
         document.getElementById("contador-text").innerHTML =
-            "¡Ya cumplimos nuestro primer año juntas! 💚✨";
+            "¡Ya cumplimos nuestro primer año juntas!";
         return;
     }
 
@@ -97,7 +103,7 @@ const letras = [
 ];
 
 function mostrarPopupError() {
-  const popup = document.getElementById("popup-error");
+  const popupError = document.getElementById("popup-error");
   const letra = document.getElementById("letra-random");
   
   // Selecciona una frase al azar
@@ -105,16 +111,16 @@ function mostrarPopupError() {
   letra.textContent = letras[randomIndex];
 
   // Muestra el popup
-  popup.style.display = "flex";
+  popupError.style.display = "flex";
   music.pause();
-  popupMusic.currentTime = 0;
+  popupErrorMusic.currentTime = 0;
   popupMusic.play();
 
 
   // Oculta automáticamente después de 4 segundos
   setTimeout(() => {
-  popup.style.display = "none";
-  popupMusic.pause();
+  popupError.style.display = "none";
+  popupErrorMusic.pause();
   music.play();
 }, 4000);
 
@@ -122,8 +128,6 @@ function mostrarPopupError() {
 
 document.getElementById("btn-error").addEventListener("click", mostrarPopupError);
 
-window.addEventListener("load", () => {
-    document.body.classList.add("mostrar");
 });
 
 
