@@ -1,70 +1,67 @@
 /* --------------------- ELEMENTOS --------------------- */
-
 const splash = document.getElementById("splash");
 const mainContent = document.getElementById("main");
 const contadorSection = document.getElementById("contador");
-const galeriaSection = document.getElementById("galeria");
 const inicioSection = document.getElementById("inicio");
+const cochonaSection = document.getElementById("cochona");
 
-/* Pop-up */
+/* POPUPS */
 const popup = document.getElementById("popup");
-const popupText = document.getElementById("popup-text");
-const popupBtn = document.getElementById("popup-next");
+const lyricText = document.getElementById("lyricText");
+const nextLyricBtn = document.getElementById("nextLyricBtn");
+const closePopupBtn = document.getElementById("closePopupBtn");
 
-/* Botones */
+/* BOTONES */
 const irAContadorBtn = document.getElementById("ir-contador");
-const irAGaleriaBtn = document.getElementById("ir-galeria");
 const irAPopupBtn = document.getElementById("ir-popup");
 const volverInicioBtns = document.querySelectorAll(".volver-inicio");
+const openLyricBtn = document.getElementById("openLyricBtn");
 
 /* --------------------- MÚSICA --------------------- */
-
-let music = new Audio("audio/may_you_never_forget_me.mp3");
+const music = new Audio("audio/may_you_never_forget_me.mp3");
 music.loop = true;
 
-let popupMusic = new Audio("audio/Ricky_Montgomery_Line_Without_A_Hook.mp3");
+const popupMusic = new Audio("audio/Ricky_Montgomery_Line_Without_A_Hook.mp3");
 popupMusic.loop = false;
 
-/* Inicia música después del splash */
+/* --------------------- INICIO APP --------------------- */
 window.addEventListener("load", () => {
-    // Inicia música
+    // Ocultar splash después de 2 seg y mostrar main
     setTimeout(() => {
+        splash.style.display = "none";
+        mainContent.style.display = "block";
         music.play().catch(() => {
             console.log("Autoplay bloqueado, se reproducirá al tocar la pantalla.");
         });
     }, 2000);
-
-    // Activa animación del body
-    document.body.classList.add("mostrar");
 });
 
-});
-
-/* Reproducir si el usuario toca (para desbloquear autoplay en móviles) */
+// Permitir reproducir música al tocar la pantalla (móviles)
 document.body.addEventListener("click", () => {
     music.play();
 });
 
-/* --------------------- VISUALIZACIÓN DE SECCIONES --------------------- */
-
+/* --------------------- FUNCIONES DE SECCIONES --------------------- */
 function showSection(section) {
+    // Ocultar todas las secciones
     inicioSection.style.display = "none";
     contadorSection.style.display = "none";
-    galeriaSection.style.display = "none";
+    cochonaSection.style.display = "none";
 
+    // Mostrar la sección indicada
     section.style.display = "block";
     section.scrollIntoView({ behavior: "smooth" });
 }
 
+/* BOTONES DE NAVEGACIÓN */
 irAContadorBtn.onclick = () => showSection(contadorSection);
-irAGaleriaBtn.onclick = () => showSection(galeriaSection);
+irAPopupBtn.onclick = () => showSection(cochonaSection);
 
 volverInicioBtns.forEach(btn => {
     btn.onclick = () => showSection(inicioSection);
 });
 
 /* --------------------- CONTADOR --------------------- */
-
 function actualizarContador() {
     const fechaMeta = new Date("2025-09-04T00:00:00");
     const ahora = new Date();
@@ -89,45 +86,43 @@ function actualizarContador() {
 
 actualizarContador();
 
-/* --------------------- POPUP TIPO ERROR --------------------- */
+/* --------------------- POPUP COCHONA --------------------- */
+let currentLyric = 0;
 
+// Aquí defines tus frases, por ejemplo:
 const letras = [
-    "Oh, baby, I am a wreck when I'm without you",
-    "I need you here to stay",
-    "I broke all my bones that day I found you",
-    "Crying at the lake",
-    "Was it something I said to make you feel like you're a burden?",
-    "Oh, and if I could take it all back",
-    "I swear that I would pull you from the tide..."
-
+"Oh, baby, I am a wreck when I'm without you", 
+"I need you here to stay", 
+"I broke all my bones that day I found you", 
+"Crying at the lake", 
+"Was it something I said to make you feel like you're a burden?", 
+"Oh, and if I could take it all back", "I swear that I would pull you from the tide..."
 ];
 
-function mostrarPopupError() {
-  const popupError = document.getElementById("popup-error");
-  const letra = document.getElementById("letra-random");
-  
-  // Selecciona una frase al azar
-  const randomIndex = Math.floor(Math.random() * letras.length);
-  letra.textContent = letras[randomIndex];
+openLyricBtn.onclick = () => {
+    // Reinicia la letra
+    currentLyric = 0;
+    lyricText.textContent = letras[currentLyric];
+    popup.style.display = "block";
+    popupMusic.currentTime = 0;
+    popupMusic.play();
+};
 
-  // Muestra el popup
-  popupError.style.display = "flex";
-  music.pause();
-  popupErrorMusic.currentTime = 0;
-  popupMusic.play();
+nextLyricBtn.onclick = () => {
+    currentLyric++;
+    if (currentLyric < letras.length) {
+        lyricText.textContent = letras[currentLyric];
+    } else {
+        popup.style.display = "none";
+        popupMusic.pause();
+        music.play();
+    }
+};
 
-
-  // Oculta automáticamente después de 4 segundos
-  setTimeout(() => {
-  popupError.style.display = "none";
-  popupErrorMusic.pause();
-  music.play();
-}, 4000);
-
-}
-
-document.getElementById("btn-error").addEventListener("click", mostrarPopupError);
-
-});
+closePopupBtn.onclick = () => {
+    popup.style.display = "none";
+    popupMusic.pause();
+    music.play();
+};
 
 
