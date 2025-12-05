@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Para Connie 💚</title>
+  <meta name="description" content="Una app hecha con cariño para Connie - 3 meses 💚" />
+
+  <!-- Enlaza tu CSS (luego te paso el archivo css completo) -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Tip: deja el JS en /js/main.js (te lo paso después). Se carga con defer. -->
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <!-- ===== Pantalla Splash (presentación desvanecida) ===== -->
+  <section id="splash" class="screen splash">
+    <div class="splash-inner">
+      <!-- Texto que tú dijiste que yo cree: lo puedes editar luego -->
+      <h1>Para mi Connie</h1>
+      <p class="subtitle">Por nuestros tres meses y por todos los momentos que aún nos faltan por vivir.</p>
+      <p class="tiny">Hecho con cariño 💚</p>
+    </div>
+  </section>
+
+  <!-- ===== Contenedor principal (todas las pantallas) ===== -->
+  <main id="app" class="hidden">
+    <!-- ===== Inicio ===== -->
+    <section id="inicio" class="panel active">
+      <header class="panel-header">
+        <h2>Hola mi amor 🌿</h2>
+        <p class="intro">
+          Te hice este pequeño espacio para celebrarnos: colores suaves, flores que te gustan y recuerdos que nos definen.
+          Aquí encontrarás fotos, un contador especial y una sorpresa que llamo "Cochona".
+        </p>
+      </header>
+
+      <div class="content">
+        <div class="img-pair">
+          <figure><img src="images/lirios1.jpg" alt="Lirios decorativos" /></figure>
+          <figure><img src="images/choco1.jpg" alt="Foto nuestra (choco1)" /></figure>
+        </div>
+
+        <div class="card">
+          <h3>¿Qué contiene esta app?</h3>
+          <ul>
+            <li>Un contador hacia nuestro día especial (04/09/2025).</li>
+            <li>Galería con fotos nuestras y decoraciones de lirios.</li>
+            <li>La sección "Cochona": ventanas pop-up con la letra de una canción que me recuerda a ti.</li>
+          </ul>
+        </div>
+
+        <div class="actions">
+          <button class="btn" data-go="contador">Siguiente 💚</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contador ===== -->
+    <section id="contador" class="panel hidden">
+      <header class="panel-header">
+        <h2>Faltan...</h2>
+        <p class="small">Hasta el 04 de septiembre de 2025 — nuestro día</p>
+      </header>
+
+      <div class="content center">
+        <div id="countdown" class="countdown" aria-live="polite">
+          <!-- JS llenará este bloque: días / horas / minutos / segundos -->
+          <div class="time-row">
+            <div class="time-item"><span class="num" id="days">0</span><span class="label">Días</span></div>
+            <div class="time-item"><span class="num" id="hours">0</span><span class="label">Horas</span></div>
+            <div class="time-item"><span class="num" id="minutes">0</span><span class="label">Min</span></div>
+            <div class="time-item"><span class="num" id="seconds">0</span><span class="label">Seg</span></div>
+          </div>
+        </div>
+
+        <figure class="decor-img"><img src="images/lirios2.jpg" alt="Lirios decorativos" /></figure>
+
+        <p class="sentimental">
+          Cada día a tu lado me recuerda lo afortunado que soy. Estas pequeñas cosas son para que siempre recuerdes lo especial que eres.
+        </p>
+
+        <div class="options">
+          <button class="btn" data-go="galeria">Galería 📷</button>
+          <button class="btn" data-go="cochona">Cochona 💌</button>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" data-go="inicio">Volver</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Galería ===== -->
+    <section id="galeria" class="panel hidden">
+      <header class="panel-header">
+        <h2>Nuestras cositas</h2>
+        <p class="small">Fotos y recuerdos</p>
+      </header>
+
+      <div class="content">
+        <div class="grid">
+          <!-- Las imágenes que mencionaste; puedes cambiar el orden subiendo las imágenes con esos nombres -->
+          <img src="images/sua.jpg" alt="Foto sua" />
+          <img src="images/sua2.jpg" alt="Foto sua 2" />
+          <img src="images/sua3.jpg" alt="Foto sua 3" />
+          <img src="images/choco1.jpg" alt="Foto choco1" />
+          <img src="images/choco2.jpg" alt="Foto choco2" />
+          <img src="images/mizuena.jpg" alt="Foto mizuena" />
+          <img src="images/mizuena2.jpg" alt="Foto mizuena2" />
+          <img src="images/suaymizi.jpg" alt="Foto suaymizi" />
+          <img src="images/suaymizi2.jpg" alt="Foto suaymizi2" />
+          <img src="images/lirios3.jpg" alt="Lirios" />
+          <img src="images/lirios4.jpg" alt="Lirios" />
+        </div>
+
+        <div class="actions">
+          <button class="btn" data-go="contador">Volver</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Cochona (ventana pop-up con letra a pasos) ===== -->
+    <section id="cochona" class="panel hidden">
+      <header class="panel-header">
+        <h2>Para mi cochona 💚</h2>
+        <p class="small">Toca la ventanita para empezar la letra.</p>
+      </header>
+
+      <div class="content center">
+        <!-- Música de fondo (autoplay loop). Sube el archivo a /audio/ con exactamente este nombre -->
+        <audio id="bgMusic" src="audio/may you never forget me.mp3" loop preload="auto"></audio>
+
+        <div class="cochona-area">
+          <button class="btn primary" id="openLyricBtn">Tocar ventana 💘</button>
+          <p class="hint">Cada vez que toques "Siguiente ❤️" aparecerá la próxima línea.</p>
+        </div>
+
+        <!-- Popup estilo ventana de error cute (comienza oculto) -->
+        <div id="popup" class="popup hidden" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+          <div class="popup-window">
+            <header class="popup-head">
+              <span class="popup-icon">!</span>
+              <h3 id="popupTitle">Cochona</h3>
+            </header>
+            <div class="popup-body">
+              <p id="lyricText" class="lyric-line" aria-live="polite"></p>
+            </div>
+            <footer class="popup-foot">
+              <button class="btn small" id="nextLyricBtn">Siguiente ❤️</button>
+              <button class="btn small ghost" id="closePopupBtn">Cerrar ✕</button>
+            </footer>
+          </div>
+        </div>
+
+        <!-- Audio de la canción que aparecerá cuando se empiece a mostrar la letra -->
+        <audio id="lyricMusic" src="audio/Ricky Montgomery - Line Without a Hook (Official Lyric Video) (mp3cut.net).mp3" preload="auto"></audio>
+
+        <div class="actions">
+          <button class="btn ghost" data-go="contador">Volver</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Mensajes / Plantillas que JS usará (no visible) ===== -->
+  <template id="lyricsTemplate">
+    <!-- Las líneas se inyectan desde JS; puedes editar aquí si prefieres -->
+  </template>
+
+  <!-- ===== Footer simple (opcional) ===== -->
+  <footer class="site-footer">
+    <small>Hecho con 💚 por ti • 3 meses</small>
+  </footer>
+
+  <!-- ===== Nota para ti: =====
+    - Agrega css/style.css y js/main.js con la lógica de transiciones, contador, popups y audio.
+    - Las imágenes deben estar en /images/ con los nombres usados arriba.
+    - Los audios en /audio/ con los nombres exactos:
+        * may you never forget me.mp3
+        * Ricky Montgomery - Line Without a Hook (Official Lyric Video) (mp3cut.net).mp3
+    - En el próximo mensaje te doy el CSS completo y el JS listo para pegar.
+  -->
+
+</body>
+</html>
