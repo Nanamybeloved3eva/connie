@@ -1,7 +1,7 @@
 /* ------------------ FUENTES ------------------ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-/* ------------------ BODY Y ESTILO BASE ------------------ */
+/* ------------------ BODY ------------------ */
 body {
     font-family: 'Poppins', sans-serif;
     background: #eafff4;
@@ -79,19 +79,21 @@ img {
 
 /* ------------------ CONTENEDORES Y PANELES ------------------ */
 main {
-    display: none; /* Se mostrará después del splash */
-}
-
-.panel {
-    display: none; /* Cada sección oculta por defecto */
     max-width: 760px;
     margin: 0 auto;
     padding: 20px;
-    text-align: center;
+}
+
+.panel {
+    display: none; /* Todas las secciones ocultas por defecto */
 }
 
 .panel.active {
-    display: block; /* Solo la sección activa se muestra */
+    display: block; /* La sección activa se muestra */
+}
+
+.hidden {
+    display: none !important;
 }
 
 /* ------------------ CARD ------------------ */
