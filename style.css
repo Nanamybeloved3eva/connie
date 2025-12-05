@@ -1,9 +1,17 @@
 /* ------------------ FUENTES ------------------ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+/* ------------------ BODY Y ESTILO BASE ------------------ */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #eafff4;
+    color: #2d4638;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 
 /* ------------------ PANTALLA DE CARGA ------------------ */
-
 #splash {
     position: fixed;
     top: 0;
@@ -25,14 +33,18 @@
     }
 }
 
-.splash-text {
+.splash-inner h1 {
     font-size: 2.2rem;
     font-weight: 600;
     color: #2b5c4b;
     text-align: center;
 }
 
+.splash-inner p {
+    margin: 8px 0;
+}
 
+/* ------------------ ANIMACIÓN FLOTANTE ------------------ */
 @keyframes float {
     0% { transform: translateY(0); }
     50% { transform: translateY(-6px); }
@@ -40,7 +52,6 @@
 }
 
 /* ------------------ BOTONES ------------------ */
-
 button, .btn {
     background: #76e3b4;
     color: #1f3d31;
@@ -59,7 +70,6 @@ button:hover, .btn:hover {
 }
 
 /* ------------------ IMÁGENES ------------------ */
-
 img {
     width: 100%;
     border-radius: 15px;
@@ -67,8 +77,34 @@ img {
     box-shadow: 0 2px 10px rgba(0,0,0,0.12);
 }
 
-/* ------------------ POPUP DE LETRA (VENTANA TIPO ERROR) ------------------ */
+/* ------------------ CONTENEDORES Y PANELES ------------------ */
+main {
+    display: none; /* Se mostrará después del splash */
+}
 
+.panel {
+    display: none; /* Cada sección oculta por defecto */
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.panel.active {
+    display: block; /* Solo la sección activa se muestra */
+}
+
+/* ------------------ CARD ------------------ */
+.card {
+    background: #ffffff;
+    border-radius: 25px;
+    padding: 22px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    margin-bottom: 22px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ------------------ POPUP LETRA ------------------ */
 .popup {
     position: fixed;
     top: 50%;
@@ -84,6 +120,7 @@ img {
     opacity: 0;
     pointer-events: none;
     transition: 0.3s ease;
+    z-index: 10000;
 }
 
 .popup.show {
@@ -101,68 +138,7 @@ img {
     margin-top: 15px;
 }
 
-/* ------------------ DECORACIÓN CON LIRIOS ------------------ */
-
-.lirio {
-    position: absolute;
-    width: 120px;
-    opacity: 0.35;
-    z-index: -1;
-}
-
-.lirio.top-left { top: -30px; left: -20px; transform: rotate(-15deg); }
-.lirio.bottom-right { bottom: -25px; right: -20px; transform: rotate(15deg); }
-
-/* RESPONSIVE */
-@media (max-width: 480px) {
-    .splash-text {
-        font-size: 1.8rem;
-    }
-
-    button, .btn {
-        font-size: 1rem;
-    }
-}
-
-
-/* 💚 Arreglo de colores reales de la referencia */
-body {
-    background: #eafff4 !important; /* verde pastel mucho más claro */
-    color: #2d4638 !important;
-}
-
-/* 💚 Arreglo del card que no se veía igual */
-.card {
-    background: #ffffff;
-    border-radius: 25px;
-    padding: 22px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-    margin-bottom: 22px;
-    animation: float 3s ease-in-out infinite; /* 💚 vuelve la animación */
-}
-
-
-.container {
-    max-width: 760px;
-    margin: auto;
-    padding: 20px;
-    text-align: center; /* 💚 necesario */
-}
-
-/* 💚 Arreglo de imágenes apiladas mal */
-.imagenes {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.imagenes img {
-    width: 100%;
-    border-radius: 18px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-}
-
-/* 💚 Popup estilo ventana de error retro */
+/* ------------------ POPUP ERROR ------------------ */
 .popup-error {
     display: none;
     position: fixed;
@@ -181,31 +157,14 @@ body {
     text-align: center;
     border: 3px solid #ff6b6b;
     box-shadow: 0 0 18px rgba(0,0,0,0.25);
+    animation: popupFade 0.28s ease-out;
 }
 
-.popup-error-box h2 {
-    margin-top: 0;
-    color: #d64545;
-    font-size: 22px;
-    font-weight: 700;
+@keyframes popupFade {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
-.popup-error-box p {
-    font-size: 16px;
-}
-
-.popup-error-box button {
-    margin-top: 12px;
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    font-size: 16px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-/* 💚 Botón flotante rojo que abre la ventana */
 .boton-error {
     position: fixed;
     bottom: 22px;
@@ -221,13 +180,26 @@ body {
     z-index: 9000;
 }
 
-/* 💚 Animación suave para popup */
-@keyframes popupFade {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+/* ------------------ DECORACIÓN ------------------ */
+.lirio {
+    position: absolute;
+    width: 120px;
+    opacity: 0.35;
+    z-index: -1;
 }
 
-.popup-error-box {
-    animation: popupFade 0.28s ease-out;
+.lirio.top-left { top: -30px; left: -20px; transform: rotate(-15deg); }
+.lirio.bottom-right { bottom: -25px; right: -20px; transform: rotate(15deg); }
+
+/* ------------------ RESPONSIVE ------------------ */
+@media (max-width: 480px) {
+    .splash-inner h1 {
+        font-size: 1.8rem;
+    }
+
+    button, .btn {
+        font-size: 1rem;
+    }
 }
+
 
