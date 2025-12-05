@@ -24,7 +24,6 @@
 
   <button id="btn-error" class="boton-error">Mensaje especial</button>
 
-
   <!-- ===== Pantalla Splash ===== -->
   <section id="splash" class="screen splash">
     <div class="splash-inner">
@@ -35,7 +34,6 @@
   </section>
 
   <!-- ===== Contenedor principal (todas las pantallas) ===== -->
-  <!-- CORRECCIÓN: id="app" → id="main" -->
   <main id="main" class="hidden">
 
     <!-- ===== Inicio ===== -->
@@ -58,13 +56,12 @@
           <h3>¿Qué contiene esta app?</h3>
           <ul>
             <li>Un contador hacia nuestro día especial (04/09/2025).</li>
-            <li>Galería con fotos nuestras y decoraciones de lirios.</li>
+            <li>Fotos nuestras y decoraciones de lirios.</li>
             <li>La sección "Cochona": ventana pop-up.</li>
           </ul>
         </div>
 
         <div class="actions">
-          <!-- CORRECCIÓN: agregar id="ir-contador" -->
           <button class="btn" id="ir-contador">Siguiente</button>
         </div>
       </div>
@@ -95,41 +92,11 @@
         </p>
 
         <div class="options">
-          <!-- CORRECCIÓN: IDs para JS -->
-          <button class="btn" id="ir-galeria">Galería 📷</button>
-          <button class="btn" id="ir-popup">Cochona 💌</button>
+          <button class="btn" id="ir-popup">Cochona</button>
         </div>
 
         <div class="actions">
           <button class="btn ghost volver-inicio">Volver</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Galería ===== -->
-    <section id="galeria" class="panel hidden">
-      <header class="panel-header">
-        <h2>Nuestras cositas</h2>
-        <p class="small">Fotos y recuerdos</p>
-      </header>
-
-      <div class="content">
-        <div class="grid">
-          <img src="images/sua.jpg" alt="Foto sua" />
-          <img src="images/sua2.jpg" alt="Foto sua 2" />
-          <img src="images/sua3.jpg" alt="Foto sua 3" />
-          <img src="images/choco1.jpg" alt="Foto choco1" />
-          <img src="images/choco2.jpg" alt="Foto choco2" />
-          <img src="images/mizuena.jpg" alt="Foto mizuena" />
-          <img src="images/mizuena2.jpg" alt="Foto mizuena2" />
-          <img src="images/suaymizi.jpg" alt="Foto suaymizi" />
-          <img src="images/suaymizi2.jpg" alt="Foto suaymizi2" />
-          <img src="images/lirios3.jpg" alt="Lirios" />
-          <img src="images/lirios4.jpg" alt="Lirios" />
-        </div>
-
-        <div class="actions">
-          <button class="btn volver-inicio">Volver</button>
         </div>
       </div>
     </section>
@@ -143,7 +110,6 @@
 
       <div class="content center">
 
-        <!-- CORRECCIÓN: nombre del audio con guiones bajos -->
         <audio id="bgMusic" src="audio/may_you_never_forget_me.mp3" loop preload="auto"></audio>
 
         <div class="cochona-area">
@@ -167,7 +133,6 @@
           </div>
         </div>
 
-        <!-- CORRECCIÓN: usa también guiones bajos en el nombre -->
         <audio id="lyricMusic" src="audio/Ricky_Montgomery_Line_Without_A_Hook.mp3" preload="auto"></audio>
 
         <div class="actions">
@@ -185,4 +150,5 @@
 
 </body>
 </html>
+
 
